@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna">
+   
+    <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid>
+                <AdornerDecorator>
+                    <ContentPresenter/>
+                </AdornerDecorator>
+                <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsTabStop="false" Visibility="Collapsed"/>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                    <Condition Property="WindowState" Value="Normal"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CustomWindowControlTemplate"  TargetType="{x:Type Window}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10,10,0,0" d:DesignHeight="106.166" d:DesignWidth="565.541">
+            <Grid Width="Auto" Height="Auto" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="29.333"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border x:Name="topborder" Margin="0" Grid.Column="0" BorderBrush="{x:Null}" BorderThickness="0" CornerRadius="10,10,0,0" Grid.ColumnSpan="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF343434" Offset="1"/>
+                            <GradientStop Color="#FF8A8A8A"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9.27"/>
+                            <ColumnDefinition Width="137.397"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="28.207"/>
+                            <ColumnDefinition Width="30.016"/>
+                            <ColumnDefinition Width="27.398"/>
+                            <ColumnDefinition Width="7.586"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5.332,8,0,7.646" Grid.Column="1" Text="CustomWindow" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="122.064" FontFamily="微软雅黑" Height="22.762" FontSize="14.667" FontWeight="Bold" Foreground="White"/>
+                        <Button x:Name="btnMin" Margin="2.668,2.795,2.777,3.776" Content="－" Grid.Column="3" FontWeight="Bold" FontSize="16"/>
+                        <Button x:Name="btnMax" Margin="3.891,2.795,3.363,3.776" Content="□" FontWeight="Bold" Grid.Column="4" FontSize="16"/>
+                        <Button x:Name="btnClose" Margin="2.668,2.795,1.968,3.776" Content="×" FontWeight="Bold" Grid.Column="5" Style="{DynamicResource CloseButtonStyle}" Foreground="Black" FontSize="16"/>
+                    </Grid>
+                </Border>
+                <Grid Margin="0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ContentPresenter HorizontalAlignment="Stretch" Margin="0" Width="Auto" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+        
+    <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+		<Setter Property="Template" Value="{StaticResource CustomWindowControlTemplate}"/>
+        <Style.Triggers>
+			<Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+				<Setter Property="Template" Value="{StaticResource WindowTemplateKey}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+    
+	<Style x:Key="ButtonFocusVisual">
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Rectangle Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" Margin="3" SnapsToDevicePixels="true"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<LinearGradientBrush x:Key="ButtonNormalBackgroundFill" EndPoint="0.5,1" StartPoint="0.5,0">
+		<GradientStop Color="#FFFFFFFF" Offset="0"/>
+		<GradientStop Color="#FFF0F0EA" Offset="0.9"/>
+	</LinearGradientBrush>
+	<SolidColorBrush x:Key="ButtonBorder" Color="#FF003C74"/>
+	<Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundFill}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Microsoft_Windows_Themes:ButtonChrome x:Name="Chrome" SnapsToDevicePixels="true" RenderDefaulted="{TemplateBinding IsDefaulted}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" ThemeColor="NormalColor" BorderBrush="{DynamicResource ButtonBorder}">
+						<Microsoft_Windows_Themes:ButtonChrome.Fill>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFF4747" Offset="0.234"/>
+								<GradientStop Color="#FFFFA5A5" Offset="1"/>
+							</LinearGradientBrush>
+						</Microsoft_Windows_Themes:ButtonChrome.Fill>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+					</Microsoft_Windows_Themes:ButtonChrome>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true">
+							<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true"/>
+						</Trigger>
+						<Trigger Property="ToggleButton.IsChecked" Value="true">
+							<Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    
+</ResourceDictionary>

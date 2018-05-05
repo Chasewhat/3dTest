@@ -1,0 +1,16 @@
+﻿<src:CustomWindow x:Class="_3DMAX.LocationSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:src="clr-namespace:_3DMAX"   Icon="Img\Maintenance.ico"  
+        Title="LocationSet" Height="145" Width="285" Background="Transparent" AllowsTransparency="True"
+        BackGroundType="Black"
+        Opacity="0.9"  WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" x:Name="textBoxSet" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" Margin="10,30,0,0"/>
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right"  Name="btnConfirm" VerticalAlignment="Bottom" Width="75" Click="btnConfirm_Click">Cofirm</Button>
+    </Grid>
+</src:CustomWindow>

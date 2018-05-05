@@ -1,0 +1,29 @@
+﻿<src:CustomWindow x:Class="_3DMAX.InfoShow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:_3DMAX" Icon="Img\Code.ico"
+        Title="" Height="330" Width="350" Background="Transparent" AllowsTransparency="True"
+        BackGroundType="Black"
+        Opacity="0.9" Loaded="Window_Loaded"  WindowStyle="None">
+    <DockPanel LastChildFill="True" Background="Transparent">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Name="pieShow" Height="200"
+              Background="Transparent"
+              Cursor="Hand" Grid.Row="0">
+            </Grid>
+            <Grid Grid.Row="1">
+                <Label ToolTip="stock balance" Background="Black"  FontFamily="Times New Roman">
+                    <ScrollViewer x:Name="scrollerShow" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="20,10,20,10">
+                        <TextBlock TextWrapping="WrapWithOverflow" Foreground="White" Text="" Name="showText" FontSize="16" FontFamily="Times New Roman">
+                        </TextBlock>
+                    </ScrollViewer>
+                </Label>
+
+            </Grid>
+        </Grid>
+    </DockPanel>
+</src:CustomWindow>
